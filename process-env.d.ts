@@ -8,8 +8,6 @@ declare global {
             MESSAGING_SENDER_ID: string
             APP_ID: string
             MEASUREMENT_ID: string
-            USER: string
-            PASSWORD: string;
         }
     }
 }
