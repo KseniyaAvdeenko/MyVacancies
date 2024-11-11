@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
-    const cookieStore = await cookies()
-    const isAuth = JSON.parse(cookieStore.get('isAuth').value)
+    const cookieStore = await cookies();
+    const isAuthCookies = cookieStore.get('isAuth')
+    const isAuth = isAuthCookies && isAuthCookies.value ? JSON.parse(isAuthCookies.value) : false
 
     return (
         <html lang="en">

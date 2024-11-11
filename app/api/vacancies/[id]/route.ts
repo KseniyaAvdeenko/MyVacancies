@@ -7,14 +7,14 @@ export async function GET(request: Request,
                           {params}: { params: Promise<{ id: string }> }) {
     const querySnapshot = await getDocs(collection(db, "job-search"));
     const {vacancies} = querySnapshot.docs[0].data();
+    const allVacancies:IVacancy[] = vacancies;
     const id = (await params).id;
-    const vacancy: IVacancy | null = vacancies.find(el => el.id === parseInt(id))
+    const vacancy = allVacancies.find(el => el.id === parseInt(id))
     if (vacancy) {
         return Response.json(vacancy)
     } else {
         return Response.json(null)
     }
-
 }
 
 export async function PUT(request: Request,
@@ -23,8 +23,9 @@ export async function PUT(request: Request,
         const res: IVacancy = await request.json()
         const querySnapshot = await getDocs(collection(db, "job-search"));
         const {vacancies} = querySnapshot.docs[1].data();
+        const allVacancies:IVacancy[] = vacancies;
         const id = (await params).id;
-        const vacancy: IVacancy | null = structuredClone(vacancies.find(el => el.id === parseInt(id)))
+        const vacancy = structuredClone(allVacancies.find(el => el.id === parseInt(id)))
 
         await updateDoc(doc(db, 'job-search', 'Vacancies'), {
             'vacancies': arrayRemove(vacancy)
@@ -43,8 +44,9 @@ export async function DELETE(request: NextRequest,
     try {
         const querySnapshot = await getDocs(collection(db, "job-search"));
         const {vacancies} = querySnapshot.docs[1].data();
+        const allVacancies:IVacancy[] = vacancies;
         const id = (await params).id;
-        const vacancy: IVacancy | null = vacancies.find(el => el.id === parseInt(id))
+        const vacancy = allVacancies.find(el => el.id === parseInt(id))
         await updateDoc(doc(db, 'job-search', 'Vacancies'), {
             'boards': arrayRemove(vacancy)
         });

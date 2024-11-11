@@ -20,7 +20,7 @@ const TextArea: FC<ITextAreaProps> = ({placeholder, id, label, onChangeHandler, 
             </div>
             <div className="mt-2">
                 <textarea name={name} id={id}
-                          cols="30" rows={rows} value={value}
+                          cols={30} rows={rows} value={value}
                           onChange={e => onChangeHandler(e)}
                           style={{resize:'none'}}
                           placeholder={placeholder}

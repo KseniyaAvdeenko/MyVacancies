@@ -10,10 +10,10 @@ export async function POST(request: Request) {
         const user = querySnapshot.docs[0].data()
         const res: { name: string, password: string } = await request.json()
         if (res.name === user.name && res.password === user.password) {
-            cookieStore.set('isAuth', true)
+            cookieStore.set('isAuth', JSON.stringify(true))
             return Response.json(true)
         }else{
-            cookieStore.set('isAuth', false)
+            cookieStore.set('isAuth', JSON.stringify(false))
             return Response.json(false)
         }
     } catch (e) {

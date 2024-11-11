@@ -4,7 +4,8 @@ import {cookies} from "next/headers";
 
 const Home = async () => {
     const cookieStore = await cookies()
-    const isAuth = JSON.parse(cookieStore.get('isAuth').value)
+    const isAuthCookies = cookieStore.get('isAuth')
+    const isAuth = isAuthCookies && isAuthCookies.value ? JSON.parse(isAuthCookies.value) : false
 
 
     return !isAuth ? (

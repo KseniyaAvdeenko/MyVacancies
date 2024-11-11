@@ -1,4 +1,4 @@
-import {IVacancyStatus, Status} from "@/interface/IVacancy";
+import {IVacancyStatus} from "@/interface/IVacancy";
 
 const vacancyStatus: IVacancyStatus[] = [
      {status: 'Watched', color: '#268E12'},
