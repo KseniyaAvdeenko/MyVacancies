@@ -27,7 +27,8 @@ const VacanciesTable: FC<IWatchedAndUnwatchedProps> = ({
                  style={{display: tableVisibility ? 'grid' : 'none'}}>
             <TBody/>
             {vacancies && vacancies.map(vac => (
-                <div key={vac.id} style={{background: getVacancyStatusColor(vac.status)}}
+                <div key={vac.id}
+                     style={{background: getVacancyStatusColor(vac.status) ? getVacancyStatusColor(vac.status) : 'transparent'}}
                      className="grid w-full grid-cols-8 gap-x-0.5 justify-items-center text-white sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-8">
                     <div className="p-1">{vac.company}</div>
                     <div className="p-1">{vac.salary}</div>
