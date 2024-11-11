@@ -22,7 +22,7 @@ function VacancyList() {
     }, [])
 
     const getVacancyStatusColor = (status: Status) => {
-        let color:string = ''
+        let color = ''
         const vacStatus: IVacancyStatus|null = vacancyStatus.find(el => el.status == status)??null
         if(vacancyStatus && vacStatus) color = vacStatus.color
         return color
