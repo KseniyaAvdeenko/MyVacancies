@@ -3,32 +3,31 @@ import React from "react";
 import SignInForm from "@/components/SignInForm";
 import axios from "axios";
 import VacancyList from "@/components/VacancyList";
+import {Base64} from "js-base64";
 
 const Home = () => {
     const [isAuth, setIsAuth] = React.useState<boolean>(false)
     const [user, setUser] = React.useState<{ name: string, password: string }>({name: '', password: ''})
+
     const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             const response = await axios.post(window.location.href + 'api/auth', JSON.stringify(user));
             response.data
                 ? localStorage.setItem('isAuth', '1')
                 : localStorage.setItem('isAuth', '1')
-
         } catch (e) {
             console.log(e)
         }
-
     }
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => setUser({
         ...user,
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.name === 'password'?Base64.encode(e.target.value): e.target.value
     })
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
             if (localStorage.isAuth) setIsAuth(Boolean(parseInt(localStorage.isAuth)))
         }
     }, [typeof window])
-
 
     return !isAuth ? (
         <div

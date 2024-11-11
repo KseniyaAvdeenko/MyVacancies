@@ -22,7 +22,7 @@ export async function PUT(request: Request,
     try {
         const res: IVacancy = await request.json()
         const querySnapshot = await getDocs(collection(db, "job-search"));
-        const {vacancies} = querySnapshot.docs[0].data();
+        const {vacancies} = querySnapshot.docs[1].data();
         const id = (await params).id;
         const vacancy: IVacancy | null = structuredClone(vacancies.find(el => el.id === parseInt(id)))
 
@@ -42,7 +42,7 @@ export async function DELETE(request: NextRequest,
                              {params}: { params: Promise<{ id: string }> }) {
     try {
         const querySnapshot = await getDocs(collection(db, "job-search"));
-        const {vacancies} = querySnapshot.docs[0].data();
+        const {vacancies} = querySnapshot.docs[1].data();
         const id = (await params).id;
         const vacancy: IVacancy | null = vacancies.find(el => el.id === parseInt(id))
         await updateDoc(doc(db, 'job-search', 'Vacancies'), {

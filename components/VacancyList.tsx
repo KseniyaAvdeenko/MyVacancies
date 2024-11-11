@@ -17,8 +17,8 @@ const vacancyService = new VacancyService()
 function VacancyList() {
     const [vacancies, setVacancies] = useState([])
     const [vacancyStatus, setVacancyStatus] = useState([])
-    const [watchedTable, setWatchedTable] = useState(true);
-    const [unWatchedTable, setUnWatchedTable] = useState(false);
+    const [watchedTable, setWatchedTable] = useState(false);
+    const [unWatchedTable, setUnWatchedTable] = useState(true);
     const [rejectedTable, setRejectedTable] = useState(false)
     const [archivedTable, setArchivedTable] = useState(false)
 

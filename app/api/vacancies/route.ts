@@ -4,7 +4,7 @@ import {IVacancy} from "@/interface/IVacancy";
 
 export async function GET(request: Request) {
     const querySnapshot = await getDocs(collection(db, 'job-search'));
-    const {vacancies} = querySnapshot.docs[0].data()
+    const {vacancies} = querySnapshot.docs[1].data()
     return Response.json(vacancies)
 }
 
