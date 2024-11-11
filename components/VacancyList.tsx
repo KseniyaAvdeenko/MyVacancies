@@ -22,8 +22,10 @@ function VacancyList() {
     }, [])
 
     const getVacancyStatusColor = (status: Status) => {
+        let color:string = ''
         const vacStatus: IVacancyStatus|null = vacancyStatus.find(el => el.status == status)??null
-        if(vacancyStatus && vacStatus) vacStatus.color
+        if(vacancyStatus && vacStatus) color = vacStatus.color
+        return color
     }
 
     const onChangeUpdateHandler = async (e: ChangeEvent<HTMLInputElement>) => {
