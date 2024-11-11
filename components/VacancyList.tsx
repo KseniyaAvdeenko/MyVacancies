@@ -21,7 +21,7 @@ function VacancyList() {
         vacancyService.getStatus().then((result: IVacancyStatus[]) => setVacancyStatus(result))
     }, [])
 
-    const getVacancyStatusColor = (status: Status) => vacancyStatus && vacancyStatus.find(el => el.status == status)
+    const getVacancyStatusColor = (status: Status) => vacancyStatus && vacancyStatus.find(el => el.status == status).color
 
     const onChangeUpdateHandler = async (e: ChangeEvent<HTMLInputElement>) => {
         const id = parseInt(e.target.id.split('*')[1])
