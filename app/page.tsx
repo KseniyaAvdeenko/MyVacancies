@@ -1,6 +1,7 @@
 import SignInForm from "@/components/SignInForm";
 import VacancyList from "@/components/VacancyList";
 import {cookies} from "next/headers";
+import VacancyService from "@/service/VacancyService";
 
 const Home = async () => {
     const cookieStore = await cookies()
