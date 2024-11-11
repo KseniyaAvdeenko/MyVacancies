@@ -3,12 +3,6 @@ import React, {FC, useEffect, useState, ChangeEvent} from 'react';
 import {IVacancy, IVacancyStatus, Status} from "@/interface/IVacancy";
 import VacancyService from "@/service/VacancyService";
 import CreateNewVacancy from "@/components/CreateNewVacancy";
-import Select from "@/components/Select";
-import Checkbox from "@/components/Checkbox";
-import InputContainer from "@/components/InputContainer";
-import TextArea from "@/components/TextArea";
-import TBody from "@/components/TBody";
-import {getDate} from "@/utils/getDate";
 import InlineTabs from "@/components/InlineTabs";
 import VacanciesTable from "@/components/VacanciesTable";
 
