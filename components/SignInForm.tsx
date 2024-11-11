@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-import axios from "axios";
 import {Base64} from "js-base64";
 import AuthService from "@/service/AuthService";
 
