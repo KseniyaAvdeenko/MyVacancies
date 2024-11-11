@@ -1,12 +1,29 @@
-import React, {FC} from 'react';
+"use client"
+import React from 'react';
+import axios from "axios";
+import {Base64} from "js-base64";
+import AuthService from "@/service/AuthService";
 
-interface ISingProps {
-    user: { name: string, password: string }
-    onSubmitHandler: Function
-    onChangeHandler: Function
-}
+const authService = new AuthService()
 
-const SignInForm: FC<ISingProps> = ({user, onSubmitHandler, onChangeHandler}) => {
+const SignInForm = () => {
+    const [user, setUser] = React.useState<{ name: string, password: string }>({name: '', password: ''})
+    const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const response = await authService.login({name: user.name, password: Base64.encode(user.password)})
+        if (response.data) {
+            setUser({name: '', password: ''})
+            window.location.reload()
+        } else {
+            setUser({name: '', password: ''})
+        }
+    }
+    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => setUser({
+        ...user,
+        [e.target.name]: e.target.value
+    })
+
+
     return (
         <form method="POST" className="space-y-6" onSubmit={e => onSubmitHandler(e)}>
             <div>

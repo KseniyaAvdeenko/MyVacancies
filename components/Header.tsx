@@ -1,21 +1,14 @@
 'use client'
-import React from 'react';
+import React, {FC} from 'react';
+import AuthService from "@/service/AuthService";
 
+const authService = new AuthService()
 
-const Header = () => {
-    const [isAuth, setIsAuth] = React.useState<boolean>(false)
-    React.useEffect(() => {
-        if (typeof window !== 'undefined') {
-            if (localStorage.isAuth) setIsAuth(Boolean(parseInt(localStorage.isAuth)))
-        }
-    }, [typeof window])
-
-
-    const logOut = () => {
-        localStorage.setItem('isAuth', '0')
+const Header: FC<{isAuth: boolean}> = ({isAuth}) => {
+    const logOut = async () => {
+        await authService.logout();
         window.location.reload()
     }
-
     return (
         <header className="bg-teal-800 text-gray-50 w-full h-14 px-24 xl:px-20 lg:px-14 md:px-10 sm:px-7 ">
             <div className="w-full py-2.5 flex flex-row justify-end">
